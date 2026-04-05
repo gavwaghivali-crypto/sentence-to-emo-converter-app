@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emoji Translator 🌈</title>
+  <meta name="description" content="Turn any sentence into expressive emojis instantly! Emoji Translator uses Gemini AI to convert your words into a fun emoji string with a full breakdown of meanings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ── HEADER ── -->
+    <header class="header">
+      <div class="logo" aria-hidden="true">✨🌈💬</div>
+      <h1>Emoji Translator</h1>
+      <p>Turn any sentence into expressive emojis with AI ✦</p>
+    </header>
+
+
+
+    <!-- ── API KEY CARD ── -->
+    <section class="api-key-card" aria-label="Gemini API key">
+      <div class="api-key-header">
+        <label class="api-key-label" for="api-key-input">🔑 Gemini API Key</label>
+        <span class="api-key-badge">Session only</span>
+      </div>
+      <div class="api-key-row">
+        <input
+          type="password"
+          id="api-key-input"
+          placeholder="AIzaSy…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Enter your Gemini API key"
+        />
+      </div>
+      <p class="api-key-hint">
+        Your key is sent directly to Google — never stored on any server.<br />
+        Don’t have one? <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get a free key at Google AI Studio →</a>
+      </p>
+    </section>
+
+    <!-- ── INPUT CARD ── -->
+    <section class="input-card" aria-label="Translation input">
+      <div class="input-card-top">
+        <label class="input-label" for="sentence-input">Your sentence</label>
+        <div class="tone-selector-wrap">
+          <label class="input-label" for="tone-select">Tone</label>
+          <select id="tone-select" aria-label="Choose translation tone">
+            <option value="neutral">😐 Neutral</option>
+            <option value="funny">😂 Funny</option>
+            <option value="dramatic">🎭 Dramatic</option>
+            <option value="poetic">🌸 Poetic</option>
+            <option value="sarcastic">😏 Sarcastic</option>
+          </select>
+        </div>
+      </div>
+      <textarea
+        id="sentence-input"
+        placeholder="e.g. I love walking in the rain on a quiet night…"
+        rows="3"
+        aria-label="Enter a sentence to translate into emojis"
+        maxlength="500"
+      ></textarea>
+      <div class="char-counter-row">
+        <span id="char-counter" class="char-counter">0 / 500</span>
+        <span class="hint-text">Ctrl+Enter to translate</span>
+      </div>
+      <div class="input-actions">
+        <button class="btn btn-secondary" id="clear-btn" type="button" aria-label="Clear input">
+          🗑️ Clear
+        </button>
+        <button class="btn btn-primary" id="translate-btn" type="button" aria-label="Translate sentence to emojis">
+          🚀 Translate
+        </button>
+      </div>
+    </section>
+
+    <!-- ── EXAMPLE PHRASES ── -->
+    <section class="examples-section" aria-label="Example phrases">
+      <p class="examples-label">✦ Try an example</p>
+      <div class="examples-row" id="examples-row"></div>
+    </section>
+
+    <!-- ── LOADING STATE ── -->
+    <div class="loading-area" id="loading-area" role="status" aria-live="polite" aria-label="Translating…">
+      <div class="loading-emojis" aria-hidden="true">✨🔮💫</div>
+      <div class="loading-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="loading-text">Translating into emojis…</p>
+    </div>
+
+    <!-- ── ERROR ── -->
+    <div class="error-card" id="error-card" role="alert" aria-live="assertive">
+      <span class="error-icon" aria-hidden="true">😬</span>
+      <div>
+        <p class="error-text" id="error-main">Something went wrong!</p>
+        <p class="error-sub"  id="error-sub">Please try again in a moment.</p>
+      </div>
+    </div>
+
+    <!-- ── RESULT ── -->
+    <section class="result-card" id="result-card" aria-label="Emoji translation result">
+
+      <!-- emoji string -->
+      <div>
+        <div class="emoji-output-header">
+          <span class="section-label">✦ Emoji Translation</span>
+          <button class="btn btn-secondary" id="copy-btn" type="button" aria-label="Copy emoji string to clipboard">
+            📋 Copy
+          </button>
+        </div>
+        <div class="emoji-string-wrap">
+          <span id="emoji-output" aria-live="polite"></span>
+        </div>
+        <p class="copy-feedback" id="copy-feedback" aria-live="polite">Copied to clipboard! 🎉</p>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- breakdown -->
+      <div>
+        <p class="breakdown-header">✦ Emoji Breakdown</p>
+        <div class="breakdown-grid" id="breakdown-grid" role="list" aria-label="Emoji meanings"></div>
+      </div>
+
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <p>Powered by Gemini AI &nbsp;·&nbsp; Made with 💜</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
